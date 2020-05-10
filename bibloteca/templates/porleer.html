@@ -1,0 +1,9 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    <ul>
+    {%for lib in library.all%}
+        <li>{{lib.book.title}}</li>
+    {%endfor%}    
+    </ul>
+{% endblock  %}

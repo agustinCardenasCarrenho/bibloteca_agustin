@@ -16,23 +16,23 @@
                 {{user}}
             </div>
         </div>
-        <div class="row">
+        <div class="row justify-content-center mt-5">
             <ul class="nav nav-tabs">
                 <li class="nav-item">
-                  <a class="{%if status == 1%} nav-link active {%else %} nav-link{%endif%}" href="http://localhost:8000/status/1">Leidos</a>
+                  <a class="{%if status == 1 %} nav-link active {%else %} nav-link{%endif%}" href="{%url 'bibloteca' 1 %}">Leidos</a>
                 </li>
                 <li class="nav-item">
-                  <a class="{%if status == 2%} nav-link active {%else %} nav-link{%endif%}" href="http://localhost:8000/status/2">leyendo</a>
+                  <a class="{%if status == 2%} nav-link active {%else %} nav-link{%endif%}" href="{%url 'bibloteca' 2 %}">leyendo</a>
                 </li>
                 <li class="nav-item">
-                  <a class="{%if status == 3%} nav-link active {%else %} nav-link{%endif%}" href="http://localhost:8000/status/3">por leer</a>
+                  <a class="{%if status == 3%} nav-link active {%else %} nav-link{%endif%}" href="{%url 'bibloteca' 3 %}">por leer</a>
                 </li>
               </ul>
         </div>
-        <div class="row">
-            {%for lib in library.all%}
-            {{lib.book.title}}
-            {%endfor%}            
+        <div class="">
+            {%block content %}
+              
+            {%endblock%}
         </div>
     </div>
 
