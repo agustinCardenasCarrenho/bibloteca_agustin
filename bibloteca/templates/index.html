@@ -19,13 +19,13 @@
         <div class="row justify-content-center mt-5">
             <ul class="nav nav-tabs">
                 <li class="nav-item">
-                  <a class="{%if status == 1 %} nav-link active {%else %} nav-link{%endif%}" href="{%url 'bibloteca' 1 %}">Leidos</a>
+                  <a class="{%if status_id == 1 %} nav-link active {%else %} nav-link{%endif%}" href="{%url 'bibloteca' 1 %}">Leidos</a>
                 </li>
                 <li class="nav-item">
-                  <a class="{%if status == 2%} nav-link active {%else %} nav-link{%endif%}" href="{%url 'bibloteca' 2 %}">leyendo</a>
+                  <a class="{%if status_id == 2%} nav-link active {%else %} nav-link{%endif%}" href="{%url 'bibloteca' 2 %}">leyendo</a>
                 </li>
                 <li class="nav-item">
-                  <a class="{%if status == 3%} nav-link active {%else %} nav-link{%endif%}" href="{%url 'bibloteca' 3 %}">por leer</a>
+                  <a class="{%if status_id == 3%} nav-link active {%else %} nav-link{%endif%}" href="{%url 'bibloteca' 3 %}">por leer</a>
                 </li>
               </ul>
         </div>

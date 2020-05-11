@@ -1,20 +1,28 @@
 {% extends 'index.html' %}
+{% load bibloteca_extra %}
 
 {% block content %}
-    
     {%for lib in library.all%}
+     <select>
+        <option value="{{status_id}}">{{status_id|getcurrentstatus}}</option>
+    {%for statu in status%}
+        <option class="{%if statu.id == status_id%} d-none {%endif%}" value="{{statu.id}}">{{statu.descriptions}}</option>
+    {%endfor%}
+    </select>
     <div class="row mt-5">
         <div class="col-4">
             <div class="card" style="width: 18rem;">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS0iXmmve4-FWvVI8lgMTugqQXCA6_z143BwTqFuhVt9yWFHMNN&usqp=CAU" class="card-img-top" alt="...">
+                <img src="{{lib.book.image}}" class="card-img-top" alt="...">
                 <div class="card-body">
-                  <p class="card-text">{{lib.book.title}}</p>
+                   <h4 class="card-tile text-center"> <strong>{{lib.book.title}} </strong></h4>
                 </div>
             </div>
         </div>
         <div class="col-6">
             <div class="progress">
-                <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+                <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: {{lib.book.currentPage|percentage:lib.book.numPages}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                {{lib.book.currentPage|percentage:lib.book.numPages}}%
+                </div>
             </div>
             <a href="#" class="btn btn-primary">ACTUALIZAR PROGRESO</a>
         </div>
