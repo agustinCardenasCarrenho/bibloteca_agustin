@@ -1,6 +1,6 @@
-from django.shortcuts import render
-from django.http import HttpResponse
-from .models import Statu , Library 
+from django.shortcuts import render ,redirect
+from django.http import HttpResponse,HttpResponseRedirect
+from .models import Statu , Library ,Book
 
 def index(request):
     return render(request,'index.html' , {'user' : request.user } )
@@ -14,3 +14,9 @@ def bookList(request, status_id):
         3:'porleer.html'
     }
     return render(request,views.get(status_id) , { 'library' : library , 'status_id' : status_id , 'status' : statu } )
+
+def updateBookState(request , book_id, state):
+    Book.objects.filter(id = book_id).update(statu = state) 
+    return redirect('http://localhost:8000/bibloteca/'+str(state))
+    
+

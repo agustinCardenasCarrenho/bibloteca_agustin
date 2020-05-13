@@ -4,7 +4,7 @@ register = template.Library()
 
 @register.filter(name='percentage')
 def percentage(currentPages, numPages ):
-    return (currentPages * 100) / numPages
+    return round((currentPages * 100) / numPages )
 
 @register.filter(name='getcurrentstatus')
 def getCurrentStatus(status_id):
