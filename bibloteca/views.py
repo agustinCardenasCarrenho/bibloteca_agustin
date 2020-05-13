@@ -1,5 +1,5 @@
 from django.shortcuts import render ,redirect
-from django.http import HttpResponse,HttpResponseRedirect
+from django.http import HttpResponse
 from .models import Statu , Library ,Book
 
 def index(request):
@@ -18,5 +18,9 @@ def bookList(request, status_id):
 def updateBookState(request , book_id, state):
     Book.objects.filter(id = book_id).update(statu = state) 
     return redirect('http://localhost:8000/bibloteca/'+str(state))
+
+def updateBookProgress(request, book_id, current_page):
+    Book.objects.filter(id = book_id).update(currentPage = current_page)
+    return HttpResponse('200')
     
 

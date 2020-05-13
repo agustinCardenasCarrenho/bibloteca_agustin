@@ -20,21 +20,4 @@
         </div>
     </div>
     {%endfor%} 
-
-
-    <script>
-        var selects = document.getElementsByClassName('slc')
-        for (let index = 0; index < selects.length; index++) {
-            selects[index].onchange = function () {
-               book_id = this.attributes[1].value 
-               changebookState(book_id,this.value)
-            }
-        }
-        
-        function changebookState(book_id , state){
-            fetch('http://localhost:8000/book/update/'+book_id+'/'+state).then(function(res){
-                window.location.replace(res.url);
-            })
-        }
-    </script>
 {% endblock  %}

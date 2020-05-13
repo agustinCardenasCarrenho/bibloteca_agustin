@@ -26,26 +26,42 @@
                 {{lib.book.currentPage|percentage:lib.book.numPages}}%
                 </div>
             </div>
-            <a href="#" class="btn btn-primary">ACTUALIZAR PROGRESO</a>
+           
+           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalUpdateProgress" data="{{lib.book.id}}" cantpages={{lib.book.numPages}}>
+               Actualizar progreso
+           </button>
+
         </div>
     </div>
     {%endfor%} 
+    <div class="modal fade" id="modalUpdateProgress" tabindex="-1" role="dialog" aria-labelledby="modalUpdateProgress" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+             <div class="modal-content">
+                 <div class="modal-header">
+                     <h5 class="modal-title">Actualizar progreso</h5>
+                     <button  type="button" class="close" data-dismiss="modal" aria-label="Close">
+                         <span aria-hidden="true">&times;</span>
+                     </button>
+                 </div>
+                 <div class="modal-body">
+                     <form id="form">
+                         <div class="form-group">
+                             <label> Cantidad de paginas del libro</label>
+                             <input id="cantPages" type="text" disabled class="form-control">
+                             <label>Pagina actual</label>
+                             <input  id="currentPage" type="text" class="form-control">
+                         </div>
+                         <div class="form-group">
+                             <input type="submit" value="actualizar">
+                         </div>
+                     </form>
+                 </div>
+                 <div class="modal-footer">
+                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                     <button type="button" class="btn btn-primary">Save changes</button>
+                 </div>
+             </div>   
+        </div>
+    </div>
 
-    <script>
-        
-        var selects = document.getElementsByClassName('slc')
-        for (let index = 0; index < selects.length; index++) {
-            selects[index].onchange = function () {
-               book_id = this.attributes[1].value 
-               changebookState(book_id,this.value)
-            }
-        }
-        
-        function changebookState(book_id , state){
-            fetch('http://localhost:8000/book/update/'+book_id+'/'+state).then(function(res){
-                window.location.replace(res.url);
-            })
-        }
-        
-    </script>
 {% endblock  %}
