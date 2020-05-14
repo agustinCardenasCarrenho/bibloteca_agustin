@@ -2,38 +2,40 @@
 {% load bibloteca_extra %}
 
 {% block content %}
+    {% if library %}
+       
     {%for lib in library.all%}
+    <div class="col-4 mt-5">
+       
+        <select class="slc form-control"  data="{{lib.book.id}}" style="width: 18rem;">
+            <option value="{{status_id}}">{{status_id|getcurrentstatus}}</option>
+        {%for statu in status%}
+            <option class="{%if statu.id == status_id%} d-none {%endif%}" value="{{statu.id}}">{{statu.descriptions}}</option>
+        {%endfor%}
+        </select>
 
-    <select class="slc" data="{{lib.book.id}}">
-        <option value="{{status_id}}">{{status_id|getcurrentstatus}}</option>
-    {%for statu in status%}
-        <option class="{%if statu.id == status_id%} d-none {%endif%}" value="{{statu.id}}">{{statu.descriptions}}</option>
-    {%endfor%}
-    </select>
-   
-    <div class="row mt-5">
-        <div class="col-4">
-            <div class="card" style="width: 18rem;">
-                <img src="{{lib.book.image}}" class="card-img-top" alt="...">
-                <div class="card-body">
-                   <h4 class="card-tile text-center"> <strong>{{lib.book.title}} </strong></h4>
-                </div>
+        <div class="card" style="width: 18rem;">
+            <img src="{{lib.book.image}}" class="card-img-top" alt="...">
+            <div class="card-body">
+               <h4 class="card-tile text-center"> <strong>{{lib.book.title}} </strong></h4>
             </div>
         </div>
-        <div class="col-6">
-            <div class="progress">
-                <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: {{lib.book.currentPage|percentage:lib.book.numPages}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                {{lib.book.currentPage|percentage:lib.book.numPages}}%
-                </div>
+        <div class="progress" style="width: 18rem;">
+            <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: {{lib.book.currentPage|percentage:lib.book.numPages}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+            {{lib.book.currentPage|percentage:lib.book.numPages}}%
             </div>
-           
-           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalUpdateProgress" data="{{lib.book.id}}" cantpages={{lib.book.numPages}}>
-               Actualizar progreso
-           </button>
-
         </div>
+       
+       <button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#modalUpdateProgress" data="{{lib.book.id}}" cantpages={{lib.book.numPages}} style="width: 18rem;">
+           Actualizar progreso
+       </button>
     </div>
     {%endfor%} 
+    
+    {% else %}
+        <div class="text-center" ><h1 class="">NO HAY LIBROS!!!</h1></div>
+    {% endif %}
+
     <div class="modal fade" id="modalUpdateProgress" tabindex="-1" role="dialog" aria-labelledby="modalUpdateProgress" aria-hidden="true">
         <div class="modal-dialog" role="document">
              <div class="modal-content">

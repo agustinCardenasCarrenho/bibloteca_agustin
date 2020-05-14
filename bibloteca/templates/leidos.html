@@ -3,19 +3,17 @@
 
 {% block content %}
     {%for lib in library.all%}
-    <select class="slc" data="{{lib.book.id}}">
-        <option value="{{status_id}}">{{status_id|getcurrentstatus}}</option>
-    {%for statu in status%}
-        <option class="{%if statu.id == status_id%} d-none {%endif%}" value="{{statu.id}}">{{statu.descriptions}}</option>
-    {%endfor%}
-    </select>
-    <div class="row mt-5">
-        <div class="col-4">
-            <div class="card" style="width: 18rem;">
-                <img src="{{lib.book.image}}" class="card-img-top" alt="...">
-                <div class="card-body">
-                   <h4 class="card-tile text-center"> <strong>{{lib.book.title}} </strong></h4>
-                </div>
+    <div class="col-4 mt-5">
+        <select class="slc form-control" data="{{lib.book.id}}" style="width: 18rem;" >
+            <option value="{{status_id}}">{{status_id|getcurrentstatus}}</option>
+        {%for statu in status%}
+            <option class="{%if statu.id == status_id%} d-none {%endif%}" value="{{statu.id}}">{{statu.descriptions}}</option>
+        {%endfor%}
+        </select>
+        <div class="card" style="width: 18rem;">
+            <img src="{{lib.book.image}}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h4 class="card-tile text-center"> <strong>{{lib.book.title}} </strong></h4>
             </div>
         </div>
     </div>
