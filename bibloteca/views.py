@@ -2,8 +2,6 @@ from django.shortcuts import render ,redirect
 from django.http import HttpResponse
 from .models import Statu , Library ,Book
 
-def index(request):
-    return render(request,'index.html' , {'user' : request.user } )
 
 def bookList(request, status_id):
     library = Library.objects.all().filter(user = request.user.id).filter(book__statu = status_id)
