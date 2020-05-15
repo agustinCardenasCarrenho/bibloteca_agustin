@@ -36,12 +36,23 @@ $("#modalUpdateProgress").on("hidden.bs.modal", function () {
 
 formUpdateProgress.addEventListener('submit' , function(e){
     e.preventDefault()
-    currentPage.value <= cantpages ? updateBookProgress(book_id, currentPage.value) : alert("La cantidad de paginas ingresadas en mayor a la cantidad de paginas del libro")
+    currentPage.value <= cantpages ? updateBookProgress(book_id, 1, currentPage.value) : alert("La cantidad de paginas ingresadas en mayor a la cantidad de paginas del libro")
 })
 
-function updateBookProgress(book_id , currentPage){
-    if(currentPage == cantpages)  changebookState(book_id , 1) 
-    fetch('http://localhost:8000/book/update/bookprogress/'+book_id+'/'+currentPage).then(function(e){
+
+
+
+function updateBookProgress(book_id ,user_id , currentPage){
+    let data = new FormData();
+    data.append('book_id', book_id)
+    data.append('user_id', user_id)
+    data.append('current_page', currentPage)
+    data.append('csrfmiddlewaretoken' , document.getElementsByName('csrfmiddlewaretoken')[0].value)
+    fetch('http://localhost:8000/book/update/bookprogress',{
+        method : 'POST',
+        body : data,
+        credentials: 'same-origin',
+    }).then(function(e){
         location.reload()
     })
 }

@@ -14,24 +14,11 @@
 <body>
      {% include 'nav.html' %}
     <div class="container">
-    
-        <div class="row justify-content-center mt-5">
-            <ul class="nav nav-pills nav-fill">
-                <li class="nav-item">
-                  <a class="{%if status_id == 1 %} nav-link active {%else %} nav-link{%endif%}" href="{%url 'bibloteca' 1 %}">Leidos</a>
-                </li>
-                <li class="nav-item">
-                  <a class="{%if status_id == 2%} nav-link active {%else %} nav-link{%endif%}" href="{%url 'bibloteca' 2 %}">leyendo</a>
-                </li>
-                <li class="nav-item">
-                  <a class="{%if status_id == 3%} nav-link active {%else %} nav-link{%endif%}" href="{%url 'bibloteca' 3 %}">por leer</a>
-                </li>
-              </ul>
-        </div>
-        <div class="row">
+        <div class="">
             {%block content %}{%endblock%}
         </div>
     </div>
+    {% csrf_token %}
     <script src="{%  static '/bibloteca/script.js' %}" ></script>
 </body>
 </html>

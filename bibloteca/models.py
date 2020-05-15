@@ -7,16 +7,21 @@ class Statu(models.Model):
 
     def __str__(self):
         return self.descriptions
-    
+
 class Book(models.Model):
     title = models.CharField(max_length = 300)
     author = models.CharField(max_length = 300)
     numPages = models.IntegerField()
     statu = models.ForeignKey(Statu , on_delete=models.CASCADE)
-    currentPage = models.IntegerField(default = 0)
     image = models.CharField(max_length = 300 ,default = '' )
+
+class Progress(models.Model):
+    book = models.ForeignKey(Book , on_delete=models.CASCADE)
+    user = models.ForeignKey(User , on_delete=models.CASCADE)
+    currentPage = models.IntegerField(default = 0)
 
 class Library(models.Model):
     book = models.ForeignKey(Book , on_delete=models.CASCADE)
     user = models.ForeignKey(User , on_delete=models.CASCADE)
+
 
