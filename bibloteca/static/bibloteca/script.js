@@ -6,10 +6,10 @@ var currentPage = document.getElementById('currentPage')
 var book_id , cantpages
 var user_id = document.getElementsByName('user_id')[0].value
 
-//cambia el estado del libro
 
+//cambia el estado del libro
 function changebookState(book_id , state){
-    fetch('http://localhost:8000/book/update/'+book_id+'/'+user_id+'/'+state).then(function(res){
+    fetch('/book/update/'+book_id+'/'+user_id+'/'+state).then(function(res){
         window.location.replace(res.url)
     })
 }
@@ -49,7 +49,7 @@ function updateBookProgress(book_id ,user_id , currentPage){
     data.append('user_id', user_id)
     data.append('current_page', currentPage)
     data.append('csrfmiddlewaretoken' , document.getElementsByName('csrfmiddlewaretoken')[0].value)
-    fetch('http://localhost:8000/book/update/bookprogress',{
+    fetch('/book/update/bookprogress',{
         method : 'POST',
         body : data,
         credentials: 'same-origin',
@@ -57,4 +57,3 @@ function updateBookProgress(book_id ,user_id , currentPage){
         location.reload() 
     })
 }
-
