@@ -4,6 +4,7 @@ var iCantPages = document.getElementById('cantPages')
 var btns = document.getElementsByClassName('btn btn-primary')
 var currentPage = document.getElementById('currentPage')
 var book_id , cantpages
+var user_id = document.getElementsByName('user_id')[0].value
 
 //cambia el estado del libro
 
@@ -36,7 +37,7 @@ $("#modalUpdateProgress").on("hidden.bs.modal", function () {
 
 formUpdateProgress.addEventListener('submit' , function(e){
     e.preventDefault()
-    currentPage.value <= cantpages ? updateBookProgress(book_id, 1, currentPage.value) : alert("La cantidad de paginas ingresadas en mayor a la cantidad de paginas del libro")
+    currentPage.value <= cantpages ? updateBookProgress(book_id, user_id, currentPage.value) : alert("La cantidad de paginas ingresadas en mayor a la cantidad de paginas del libro")
 })
 
 
@@ -53,7 +54,7 @@ function updateBookProgress(book_id ,user_id , currentPage){
         body : data,
         credentials: 'same-origin',
     }).then(function(e){
-        location.reload()
+        location.reload() 
     })
 }
 

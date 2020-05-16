@@ -1,27 +1,44 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light float-rigth">
-  <a class="navbar-brand" href="#">BIBLOTECA</a>
+  <a class="navbar-brand" href="/">BIBLIOTECA</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex mr-5">
-      <li class="nav-item active">
-        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Features</a>
-      </li>
+      {%if  user.is_authenticated%}
       <li class="nav-item dropdown mr-5">
          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
          {{user}}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Bibloteca</a>
+          <a class="dropdown-item" href="/biblioteca">Biblioteca</a>
           <a class="dropdown-item" href="#">Perfil</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="{% url 'logout' %}">Cerrar sesion</a>
         </div>
       </li>
+      {%else%}
+        <form method="POST">
+          {% csrf_token %}
+          <div class="form-row align-items-center">
+            <div class="col-auto">
+              <label class="sr-only" for="inlineFormInput">Nombre de usuario</label>
+              <input type="text" class="form-control mb-2" name="username" placeholder="Nombre de usuario">
+            </div>
+            <div class="col-auto">
+              <label class="sr-only" for="inlineFormInputGroup">Contraseña</label>
+              <div class="input-group mb-2">
+              <input type="password" class="form-control" name="password" placeholder="Contraseña">
+              </div>
+            </div>
+            <div class="col-auto">
+            </div>
+            <div class="col-auto">
+              <button type="submit" class="btn btn-primary mb-2">Iniciar sesión</button>
+            </div>
+          </div>
+        </form>
+      {% endif %}
     </ul>
   </div>
 </nav> 

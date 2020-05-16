@@ -116,8 +116,6 @@ USE_L10N = True
 USE_TZ = True
 
 
-LOGOUT_REDIRECT_URL = reverse_lazy('bibloteca/1')
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 

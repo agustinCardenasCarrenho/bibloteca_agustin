@@ -19,6 +19,7 @@
         </div>
     </div>
     {% csrf_token %}
+    <input  type="hidden" value="{{user.id}}" name="user_id"/>
     <script src="{%  static '/bibloteca/script.js' %}" ></script>
 </body>
 </html>
