@@ -9,7 +9,7 @@ var user_id = document.getElementsByName('user_id')[0].value
 //cambia el estado del libro
 
 function changebookState(book_id , state){
-    fetch('http://localhost:8000/book/update/'+book_id+'/'+state).then(function(res){
+    fetch('http://localhost:8000/book/update/'+book_id+'/'+user_id+'/'+state).then(function(res){
         window.location.replace(res.url)
     })
 }

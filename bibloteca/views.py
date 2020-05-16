@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate ,login as do_login
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView
-from .models import Statu , Library ,Book , Progress
+from .models import Statu , Library ,Book , Progress , State 
 
 
 def home(request):
@@ -16,7 +16,7 @@ def home(request):
 
 @login_required
 def bookList(request, status_id):
-    library = Library.objects.all().filter(user = request.user.id).filter(book__statu = status_id)
+    library = State.objects.all().filter(user = request.user.id, statu__id = status_id)
     statu = Statu.objects.all()
     views={
         1:'leidos.html',
@@ -32,8 +32,8 @@ def getBooks(request):
     return render(request , 'allbooks.html', {'library' : library,'status' : statu})
 
 @login_required
-def updateBookState(request , book_id, state):
-    Book.objects.filter(id = book_id).update(statu = state) 
+def updateBookState(request , book_id, user_id,state):
+    State.objects.filter(book= book_id, user = user_id ).update(statu = state) 
     return redirect('/biblioteca/'+str(state))
 
 

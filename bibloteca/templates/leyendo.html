@@ -22,10 +22,10 @@
     <div class="row">
     {%for lib in library.all%}
     <div class="col-4 mt-5">
-        <select class="slc form-control"  data="{{lib.book.id}}" style="width: 18rem;">
-            <option value="{{status_id}}">{{status_id|getcurrentstatus}}</option>
+        <select class="slc form-control" data="{{lib.book.id}}" style="width: 18rem;" >
+            <option value="{{lib.book.id|getcurrentstatusid:user.id}}">{{lib.book.id|getcurrentstatusdescriptions:user.id}}</option>
         {%for statu in status%}
-            <option class="{%if statu.id == status_id%} d-none {%endif%}" value="{{statu.id}}">{{statu.descriptions}}</option>
+            <option class="{%if statu.id == lib.book.id|getcurrentstatusid:user.id %} d-none {%endif%}" value="{{statu.id}}">{{statu.descriptions}}</option>
         {%endfor%}
         </select>
 

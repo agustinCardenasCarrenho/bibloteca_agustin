@@ -8,9 +8,13 @@ register = template.Library()
 def percentage(currentPages, numPages ):
     return round((currentPages * 100) / numPages )
 
-@register.filter(name='getcurrentstatus')
-def getCurrentStatus(status_id):
-    return models.Statu.objects.only('descriptions').filter(id = status_id).first()
+@register.filter(name='getcurrentstatusdescriptions')
+def getCurrentStatus(book_id, user_id):
+    return models.State.objects.values_list('statu__descriptions' , flat=True).filter(book = book_id , user = user_id).first()
+
+@register.filter(name='getcurrentstatusid')
+def getCurrentStatus(book_id, user_id):
+    return models.State.objects.values_list('statu__id' , flat=True).filter(book = book_id , user = user_id).first()
 
 @register.filter(name='getcurrentpage')
 def getCurrentPage(book_id , user_id):
