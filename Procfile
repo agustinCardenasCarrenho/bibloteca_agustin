@@ -1,0 +1,1 @@
+web: gunicorn bibloteca_agustin_proyecto.wsgi --log-file -
