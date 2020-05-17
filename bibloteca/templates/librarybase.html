@@ -1,0 +1,14 @@
+{% load bibloteca_extra %}
+
+<select class="slc form-control" data="{{lib.book.id}}" style="" >
+    <option value="{{lib.book.id|getcurrentstatusid:user.id}}">{{lib.book.id|getcurrentstatusdescriptions:user.id}}</option>
+{%for statu in status%}
+    <option class="{%if statu.id == lib.book.id|getcurrentstatusid:user.id %} d-none {%endif%}" value="{{statu.id}}">{{statu.descriptions}}</option>
+{%endfor%}
+</select>
+<div class="card" style="">
+    <img src="{{lib.book.image}}" class="card-img-top" alt="...">
+    <div class="card-body">
+        <h4 class="card-tile text-center"> <strong>{{lib.book.title}} </strong></h4>
+    </div>
+</div>

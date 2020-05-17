@@ -1,0 +1,16 @@
+     <div class="row justify-content-center mt-5">
+        <ul class="nav nav-pills nav-fill">
+            <li class="nav-item">
+             <a class="{%if  not status_id %} nav-link active {%else %} nav-link{%endif%}" href="/biblioteca">Todos</a>
+            </li>
+            <li class="nav-item">
+              <a class="{%if status_id == 1 %} nav-link active {%else %} nav-link{%endif%}" href="{%url 'biblioteca' 1 %}">Leidos</a>
+            </li>
+            <li class="nav-item">
+              <a class="{%if status_id == 2%} nav-link active {%else %} nav-link{%endif%}" href="{%url 'biblioteca' 2 %}">Leyendo</a>
+            </li>
+            <li class="nav-item">
+              <a class="{%if status_id == 3%} nav-link active {%else %} nav-link{%endif%}" href="{%url 'biblioteca' 3 %}">Por leer</a>
+            </li>
+        </ul>
+    </div>

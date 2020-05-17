@@ -1,46 +1,22 @@
 {% extends 'base.html' %}
-{% load bibloteca_extra %}
 
 {% block content %}
-     
-     <div class="row justify-content-center mt-5">
-        <ul class="nav nav-pills nav-fill">
-            <li class="nav-item">
-              <a class="{%if  not status_id %} nav-link active {%else %} nav-link{%endif%}" href="/biblioteca">Todos</a>
-            </li>
-            <li class="nav-item">
-              <a class="{%if status_id == 1 %} nav-link active {%else %} nav-link{%endif%}" href="{%url 'biblioteca' 1 %}">Leidos</a>
-            </li>
-            <li class="nav-item">
-              <a class="{%if status_id == 2%} nav-link active {%else %} nav-link{%endif%}" href="{%url 'biblioteca' 2 %}">leyendo</a>
-            </li>
-            <li class="nav-item">
-              <a class="{%if status_id == 3%} nav-link active {%else %} nav-link{%endif%}" href="{%url 'biblioteca' 3 %}">por leer</a>
-            </li>
-        </ul>
-    </div>
+{% include 'menu.html' %}
 
     {% if library %}
-    <div class="row">
-    {%for lib in library.all%}
-        <div class="col-4 mt-5">
-            <select class="slc form-control" data="{{lib.book.id}}" style="width: 18rem;" >
-                <option value="{{lib.book.id|getcurrentstatusid:user.id}}">{{lib.book.id|getcurrentstatusdescriptions:user.id}}</option>
-            {%for statu in status%}
-                <option class="{%if statu.id == lib.book.id|getcurrentstatusid:user.id %} d-none {%endif%}" value="{{statu.id}}">{{statu.descriptions}}</option>
-            {%endfor%}
-            </select>
-            <div class="card" style="width: 18rem;">
-                <img src="{{lib.book.image}}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h4 class="card-tile text-center"> <strong>{{lib.book.title}} </strong></h4>
-                </div>
+        <div class="row">
+
+        {%for lib in library.all%}
+            <div class="col-lg-4 col-xs-12 mt-5 w-75 mx-auto">
+                {% include 'librarybase.html' %}
             </div>
+        {%endfor%}
+        
         </div>
-    {%endfor%}
-    </div>
     {% else %}
+
         <div class="text-center" ><h1 class="">NO HAY LIBROS!!!</h1></div>
+
     {% endif %} 
 
 {% endblock  %}
