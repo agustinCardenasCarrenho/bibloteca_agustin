@@ -36,6 +36,26 @@
         </form>
     </div>
    </div>
+        <form method="POST">
+          {% csrf_token %}
+          <div class="form-row align-items-center">
+            <div class="col-auto">
+              <label class="sr-only" for="inlineFormInput">Nombre de usuario</label>
+              <input type="text" class="form-control mb-2" name="username" placeholder="Nombre de usuario">
+            </div>
+            <div class="col-auto">
+              <label class="sr-only" for="inlineFormInputGroup">Contraseña</label>
+              <div class="input-group mb-2">
+              <input type="password" class="form-control" name="password" placeholder="Contraseña">
+              </div>
+            </div>
+            <div class="col-auto">
+            </div>
+            <div class="col-auto">
+              <button type="submit" class="btn btn-primary mb-2">Iniciar sesión</button>
+            </div>
+          </div>
+        </form>
     
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
