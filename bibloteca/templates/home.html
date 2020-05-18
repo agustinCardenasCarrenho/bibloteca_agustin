@@ -65,15 +65,14 @@
       </div>
       <div class="modal-body">
        
-       <form method="POST">
+       <form method="POST" clases="form">
           {% csrf_token %}
-          <div class="form-row align-items-center">
-            <div class="col-auto">
-              <label class="sr-only" for="inlineFormInput">Nombre de usuario</label>
-              <input type="text" class="form-control mb-2" name="username" placeholder="Nombre de usuario">
+            <div class="form-group">
+              <label >Nombre de usuario</label>
+              <input type="text" class="form-control" name="username" placeholder="Nombre de usuario">
             </div>
-            <div class="col-auto">
-              <label class="sr-only" for="inlineFormInputGroup">Contraseña</label>
+            <div class="form-group">
+              <label>Contraseña</label>
               <div class="input-group mb-2">
               <input type="password" class="form-control" name="password" placeholder="Contraseña">
               </div>
