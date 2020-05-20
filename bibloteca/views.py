@@ -4,12 +4,13 @@ from django.contrib.auth import authenticate ,login as do_login
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView
+from django.http import JsonResponse
 from .models import Statu , Library ,Book , Progress , State 
 
 
 def home(request):
     if request.user.id is None:
-        return render(request ,'home.html' )
+        return redirect('/accounts/login')
     else :
         return redirect('/biblioteca')
        
@@ -47,6 +48,10 @@ def updateBookProgress(request):
     ).update(currentPage =  request.POST['current_page'])
     return HttpResponse('OK')
 
+
+def search_book(request):
+    book = Book.objects.filter(title__contains = request.POST['title']).values()
+    return JsonResponse({'book' : list(book) })
 
 
 def login(request):
