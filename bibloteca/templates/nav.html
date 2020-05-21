@@ -6,11 +6,13 @@
 
   <div class="autocomplete mr-auto ml-3">
     <input class="form-control border-secondary" type="text" aria-label="Search" name="title" placeholder="Buscar libro" autocomplete="off">
-    <div class="input-group-append"> <span class="fa fa-search"></span></div>  
   </div>
   <div class="collapse navbar-collapse" id="navbarNav">
     {% csrf_token %}
     <ul class="navbar-nav ml-auto" style="margin-right : 60px">
+      <li class="nav-item">
+        <a class="nav-link" href="https://www.youtube.com/channel/UCdWrDYNHD_vVDCvudHtgqgQ">Canal de youtube</a>
+      </li>
       <li class="nav-item dropdown">
          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
          {{user}}
@@ -21,9 +23,6 @@
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="{% url 'logout' %}">Cerrar sesion</a>
         </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="https://www.youtube.com/channel/UCdWrDYNHD_vVDCvudHtgqgQ">CANAL DE YOUTUBE</a>
       </li>
     </ul>
   </div>

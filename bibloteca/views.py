@@ -48,11 +48,36 @@ def updateBookProgress(request):
     ).update(currentPage =  request.POST['current_page'])
     return HttpResponse('OK')
 
-
+@login_required
 def search_book(request):
     book = Book.objects.filter(title__contains = request.POST['title']).values()
     return JsonResponse({'book' : list(book) })
 
+@login_required
+def getbook(request, book_id):
+    book = Book.objects.filter(id = book_id).first()
+    return render(request , 'book.html' , {'book' : book})
+
+@login_required
+def add_book(request , book_id):
+    booku = Book.objects.filter(id = book_id).first()
+    library = Library.objects.filter(user = request.user , book = booku).exists()
+    if library is True :
+        return redirect('/book/'+str(book_id))
+    else :
+        statuu = Statu.objects.filter(id = 3).first()
+        Library.objects.create( book = booku , user = request.user)
+        State.objects.create(book = booku , user = request.user , statu = statuu)
+        Progress.objects.create(book = booku , user = request.user)
+    return redirect('/biblioteca')
+
+@login_required
+def delete_book(request , book_id):
+    booku = Book.objects.filter(id = book_id).first()
+    Library.objects.filter(book = booku , user = request.user ).delete()
+    State.objects.filter(book = booku , user = request.user).delete()
+    Progress.objects.filter(book = booku , user = request.user).delete()
+    return redirect("/biblioteca")
 
 def login(request):
     if request.user.id is not None:

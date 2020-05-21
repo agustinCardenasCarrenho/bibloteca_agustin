@@ -13,6 +13,7 @@ class Book(models.Model):
     author = models.CharField(max_length = 300)
     numPages = models.IntegerField()
     image = models.CharField(max_length = 300 ,default = '' )
+    synopsis = models.CharField(max_length = 1000 , default = '')
 
 class Progress(models.Model):
     book = models.ForeignKey(Book , on_delete=models.CASCADE)

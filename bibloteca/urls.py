@@ -10,5 +10,8 @@ urlpatterns = [
     path('book/update/bookprogress' , views.updateBookProgress , name='updatebookprogress'),
     path('accounts/login/' , views.login, name='login'),
     path('logout/' , logout_then_login , name='logout'),
-    path('book/buscar' , views.search_book , name='search') 
+    path('book/<int:book_id>' , views.getbook , name='book'),
+    path('book/buscar' , views.search_book , name='search'),
+    path('book/add/<int:book_id>' , views.add_book  , name='addbook'),
+    path('book/delete/<int:book_id>' , views.delete_book , name='deletebook')
 ]

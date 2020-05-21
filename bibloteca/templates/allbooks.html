@@ -3,6 +3,7 @@
 
 {% block content %}
     {% include 'menu.html' %}
+    {% if library %}
     <div class="row">
     {%for lib in library.all%}
         <div class="col-lg-4 col-xs-12 mt-5 w-50 mx-auto">
@@ -12,13 +13,22 @@
                 <option class="{%if statu.id == lib.book.id|getcurrentstatusid:user.id %} d-none {%endif%}" value="{{statu.id}}">{{statu.descriptions}}</option>
             {%endfor%}
             </select>
-            <div class="card" style="">
+            <div class="card">
                 <img src="{{lib.book.image}}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h4 class="card-tile text-center"> <strong>{{lib.book.title}} </strong></h4>
+                <div class="card-body row">
+                    <div class="col-8">
+                        <h4 class="card-tile text-center"> <strong>{{lib.book.title}} </strong></h4>
+                    </div>
+                    <div class="col-4">
+                        <a href="/book/delete/{{lib.book.id}}" class="btn  btn-danger"><i class="fa fa-trash-alt"></i></a>
+                    </div>
                 </div>
             </div>
         </div>
     {%endfor%}
     </div>
+    {% else %}
+    <div class="text-center" ><h1 class="">NO TIENES LIBROS EN TU BIBLIOTECA!!!</h1></div>
+    <a href="/" class="btn btn-success">AGREGAR LIBRO</a>
+    {% endif %}
 {% endblock  %}
