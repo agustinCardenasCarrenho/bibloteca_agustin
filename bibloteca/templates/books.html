@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="row">
+       <div class="col-12 mt-5">
+        <form  id="formsearchbook">
+            <div class="input-group mb-3">
+                <input id="booktitleseacrh" type="text" class="form-control" placeholder="TItulo del libro" aria-label="" aria-describedby="basic-addon1">
+                <div class="input-group-prepend">
+                  <button class="btn btn-outline-primary" type="submit">
+                        Buscar
+                        <i class="fa fa-search"></i>
+                </button>
+                </div>
+              </div>
+        </form>
+       </div>
+       <div id="xs" class="row mt-5"></div>
+    </div>
+{% endblock  %}

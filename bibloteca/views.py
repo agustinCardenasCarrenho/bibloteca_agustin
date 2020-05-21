@@ -79,6 +79,10 @@ def delete_book(request , book_id):
     Progress.objects.filter(book = booku , user = request.user).delete()
     return redirect("/biblioteca")
 
+@login_required
+def books(request):
+    return render(request ,'books.html')
+
 def login(request):
     if request.user.id is not None:
         return redirect('/biblioteca')
