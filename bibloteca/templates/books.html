@@ -15,6 +15,24 @@
               </div>
         </form>
        </div>
-       <div id="xs" class="row mt-5"></div>
+       
+       <div id="msgerror" class="col-12 d-none mt-5 text-center">
+         <p class="">UP!!! LIBRO NO ENCONTADO</p>
+       </div>
+
+       <div  class="row mt-5" id="divbooks">
+       
+         {%if books is None %}
+            <div>NO HAY LIBROS</div>
+         {%else%}
+
+          {%for book in books.all %}
+          <a href="/book/{{book.id}}" class="col-lg-4 col-xs-12 mt-3" >
+            <img id="imgBook" src="{{book.image}}" alt="" class="w-75 h-100">
+          </a>
+          {%endfor%}
+
+          {%endif%}
+       </div>
     </div>
 {% endblock  %}

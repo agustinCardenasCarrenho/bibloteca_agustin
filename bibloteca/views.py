@@ -81,7 +81,8 @@ def delete_book(request , book_id):
 
 @login_required
 def books(request):
-    return render(request ,'books.html')
+    books = Book.objects.all()
+    return render(request ,'books.html' , {'books' : books})
 
 def login(request):
     if request.user.id is not None:

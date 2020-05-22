@@ -77,24 +77,26 @@ formSearchBook.addEventListener('submit', function(e){
     }).
     then(response => response.json()).
     then( response => {
-        document.getElementById('xs').innerHTML = ''
-        response['book'].map( element => {
-            var x = document.createElement('DIV')
-            var xx = document.createElement('DIV')
-            var bookTitle =  document.createElement('H2')
-            var image  = document.createElement('IMG')
+        var divBooks = document.getElementById('divbooks')
+        divBooks.innerHTML = ''
+       if( response['book'].length == 0){
+            document.getElementById('msgerror').classList.remove('d-none')
+       }else{
+            response['book'].map( element => {
+                var image  = document.createElement('IMG')
+                var a = document.createElement('A')
 
-            x.setAttribute('class' ,'col-lg-4 col-xs-12 mt-3')
-            xx.setAttribute('class' , 'col-lg-8 col-xs-12 mt-3')
-            image.setAttribute('src' , element.image)
+                document.getElementById('msgerror').setAttribute('class' , 'd-none')
+                image.setAttribute('src' , element.image)
+                image.setAttribute('class' , 'w-75 h-100')
+                a.setAttribute('href' , '/book/'+element.id)
+                a.setAttribute('class' , 'col-lg-4 col-xs-12 mt-3')
+                
+                a.append(image)
+                divBooks.appendChild(a)
+            })
+       }
 
-            bookTitle.innerHTML =  element.title + '<a href="/book/add/'+ element.id+'" class="btn btn-success">AGREGAR A BIBLOTECA</a>'
-            x.append(image)
-            xx.append(bookTitle)
-
-            document.getElementById('xs').appendChild(x)
-            document.getElementById('xs').appendChild(xx)
-        })
     })
 })
 }
