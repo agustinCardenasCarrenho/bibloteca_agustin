@@ -27,8 +27,8 @@
          {%else%}
 
           {%for book in books.all %}
-          <a href="/book/{{book.id}}" class="col-lg-4 col-xs-12 mt-3" >
-            <img id="imgBook" src="{{book.image}}" alt="" class="w-75 h-100">
+          <a href="/book/{{book.id}}" class="col-lg-4 col-xs-12 mt-5 w-75 mx-auto" >
+            <img id="imgBook" src="{{book.image}}" alt="" class="card-img-top">
           </a>
           {%endfor%}
 
