@@ -88,9 +88,9 @@ formSearchBook.addEventListener('submit', function(e){
 
                 document.getElementById('msgerror').setAttribute('class' , 'd-none')
                 image.setAttribute('src' , element.image)
-                image.setAttribute('class' , 'w-75 h-100')
+                image.setAttribute('class' , 'card-img-top')
                 a.setAttribute('href' , '/book/'+element.id)
-                a.setAttribute('class' , 'col-lg-4 col-xs-12 mt-3')
+                a.setAttribute('class' , 'col-lg-4 col-xs-12 mt-3  w-75 mx-auto')
                 
                 a.append(image)
                 divBooks.appendChild(a)
